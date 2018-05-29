@@ -5,6 +5,30 @@ output:
     orientation: rows
 ---
 
+Introduction
+==================
+
+This visualisation explores the distribution of numismatic finds from five archaeological sites located in Israel, for the Early Roman Period. A total of 6 348 coins, found in five differents sites, are considered.
+
+The sites used are: 
+
+* Capernaum: A small Jewish fishing town. At this period it was not a site of particular economic or political importance, although Christian tradition considers it the hometown of the apostle Peter. Inhabitation continued until the VIII century CE.
+* Gamla: A fortified Jewish town. It was destroyed in the Great Jewish Revolt of 66-70 CE and never recovered. This sudden end means that most finds come from it.
+* Hippos: A Greek city. It had uneasy relations with its Jewish neigbours and was part of a loose confederacy of Hellenistic cities called the Decapolis. Inhabitation continued until the VIII century CE.
+* Magdala: A Jewish fishing town, famous for its salted fish exports which were greatly appreciated in Rome. Considered the birthplace of Mary Magdalene. After the Great Jewish Revolt it decayed and was abandoned between the III and IV centuries CE.
+* Tiberias: A city founded in 19 CE as the capital of the area.Although it was built accoridng to Roman standards, most of its population was composed of observant Jews. Inhabitation continues to this date.
+
+The first tab divides the provenance of the coins into cultural groups, according to the city in which they were minted:
+
+* Hellenistic: Those cities of predominantly Greek culture. Most are located in the Levant, but a few coins come from Greece itself.
+* Local: Cities in the province of Judaea in which the majority of the population was observant Jewish.
+* Nabatean: Cities which had previously belonged to the Kingdom of Nabatea and had recently been incorporated into Roman administration.
+* Parthian: Coins that come from Gaba (modern Isfahan), capital of the Parthian empire.
+* Phoenician: Cities from Akko-Ptolemais to Berytus, the centre of Phoenician culture.
+* Roman: Cities of Roman culture. Only includes Rome itself and Caesarea Maritima, centre of Roman administration for the province.
+
+The second tab establishes the networks between the sites and the mints.  The third one presents a map in which the location of each mint and site is marked.
+
 The coins
 ==================
 
@@ -57,6 +81,7 @@ Row {.tabset .tabset-fade}
 -------------------------------------
    
 ### Coins found in Capernaum 
+
 
 ```{r}
 
@@ -145,6 +170,8 @@ Row
 
 ### Network of all sites
 
+
+
 ```{r}
 
 coins <- read.csv("coins.csv") %>%
@@ -194,11 +221,11 @@ capernaum2 <- graph.adjacency(capernaum1, mode = "undirected", weighted = TRUE)
 plot(capernaum2, 
      asp=0,
      vertex.shape="none",
-     vertex.label.cex=0.8)
+     vertex.label.cex=1.2)
 
 ```
 
-### Gamla's network
+### Gamla's Network
 
 ```{r, Gamla}
 
@@ -214,14 +241,16 @@ gamlatk <- tkplot(gamla2)
 
 lgamla <- tkplot.getcoords(gamlatk)
 
-plot(gamla2, layout=lgamla,
+gamlanet <- plot(gamla2, layout=lgamla,
      vertex.shape="none",
      vertex.label.degree=-pi/2,
      vertex.label.dist=0)
 
 ```
 
-### Hippos' network
+![gamla](gamla.png)
+
+### Hippos' Network
 
 ```{r, Hippos}
 
@@ -234,7 +263,7 @@ hippos2 <- graph.adjacency(hippos1, mode = "undirected", weighted = TRUE)
 plot(hippos2, 
      asp=-5,
      vertex.shape="none",
-     vertex.label.cex=0.8)
+     vertex.label.cex=0.9)
 
 ```
 
@@ -251,11 +280,11 @@ magdala2 <- graph.adjacency(magdala1, mode = "undirected", weighted = TRUE)
 plot(magdala2, 
      asp=-5,
      vertex.shape="none",
-     vertex.label.cex=0.8)
+     vertex.label.cex=0.9)
 
 ```
 
-### Tiberia's Network
+### Tiberias' Network
 
 ```{r, Tiberias}
 
@@ -268,7 +297,7 @@ tiberias2 <- graph.adjacency(tiberias1, mode = "undirected", weighted = TRUE)
 plot(tiberias2, 
      asp=-5,
      vertex.shape="none",
-     vertex.label.cex=0.8)
+     vertex.label.cex=1)
 
 ```
 
