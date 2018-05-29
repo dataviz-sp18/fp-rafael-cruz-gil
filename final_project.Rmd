@@ -1,0 +1,144 @@
+---
+title: "Untitled"
+author: "Rafael Cruz Gil"
+date: "28 May 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(magick)
+library(igraph)
+library(rgl)
+library(networkD3)
+library(threejs)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+coins <- read.csv("coins.csv") %>%
+  subset(Mint != "Uncertain")
+
+df <- data.frame(coins$Mint, coins$City)
+
+
+g <- get.adjacency(graph.edgelist(as.matrix(df), directed = FALSE))
+
+g2 <- graph.adjacency(g, mode = "undirected", weighted = TRUE)
+
+plot.igraph(g2, vertex.shape="none")
+
+gtk <- tkplot(g2)
+
+lg <- tkplot.getcoords(gtk)
+
+(netg <- plot(g2, layout=lg,
+     vertex.shape="none",
+     vertex.label.degree=-pi/2,
+     vertex.label.dist=0,
+     vertex.label.cex=0.7))
+
+
+
+c <- cluster_louvain(g2)
+colors <- rainbow(max(c$membership))
+V(g2)$color <- colors[c$membership]
+
+rglplot(g2, layout=layout_nicely(g2, dim = 3),
+        size=-1,
+        shape="none")
+
+movie3d(spin3d(axis = c(0, -1, -0.3)), duration = 7, dir = getwd())
+
+```
+
+
+```{r, Gamla}
+
+gamla <- subset(df, coins.City == "Gamla")
+
+gamla1 <-   get.adjacency(graph.edgelist(as.matrix(gamla), directed = FALSE))
+
+gamla2 <- graph.adjacency(gamla1, mode = "undirected", weighted = TRUE)
+
+plot(gamla2, 
+     asp=-10,
+     vertex.shape="none",
+     vertex.label.cex=0.6,
+     vertex.label.degree=-pi/2,
+     vertex.label.dist=1)
+
+gamlatk <- tkplot(gamla2)
+
+lgamla <- tkplot.getcoords(gamlatk)
+
+plot(gamla2, layout=lgamla,
+     vertex.shape="none",
+     vertex.label.degree=-pi/2,
+     vertex.label.dist=0)
+
+```
+
+```{r, Capernaum}
+
+capernaum <- subset(df, coins.City == "Capernaum")
+
+capernaum1 <-   get.adjacency(graph.edgelist(as.matrix(capernaum), directed = FALSE))
+
+capernaum2 <- graph.adjacency(capernaum1, mode = "undirected", weighted = TRUE)
+
+plot(capernaum2, 
+     asp=0,
+     vertex.shape="none",
+     vertex.label.cex=0.8)
+
+```
+
+```{r, Magdala}
+
+magdala <- subset(df, coins.City == "Magdala")
+
+magdala1 <-   get.adjacency(graph.edgelist(as.matrix(magdala), directed = FALSE))
+
+magdala2 <- graph.adjacency(magdala1, mode = "undirected", weighted = TRUE)
+
+plot(magdala2, 
+     asp=-5,
+     vertex.shape="none",
+     vertex.label.cex=0.8)
+
+```
+
+```{r, Hippos}
+
+hippos <- subset(df, coins.City == "Hippos")
+
+hippos1 <-   get.adjacency(graph.edgelist(as.matrix(hippos), directed = FALSE))
+
+hippos2 <- graph.adjacency(hippos1, mode = "undirected", weighted = TRUE)
+
+plot(hippos2, 
+     asp=-5,
+     vertex.shape="none",
+     vertex.label.cex=0.8)
+
+```
+
+```{r, Tiberias}
+
+tiberias <- subset(df, coins.City == "Tiberias")
+
+tiberias1 <-   get.adjacency(graph.edgelist(as.matrix(tiberias), directed = FALSE))
+
+tiberias2 <- graph.adjacency(tiberias1, mode = "undirected", weighted = TRUE)
+
+plot(tiberias2, 
+     asp=-5,
+     vertex.shape="none",
+     vertex.label.cex=0.8)
+
+```
