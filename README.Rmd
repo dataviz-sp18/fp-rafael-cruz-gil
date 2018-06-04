@@ -2,53 +2,11 @@
 title: "README"
 author: "Rafael Cruz Gil"
 date: "29 May 2018"
-output: flexdashboard::flex_dashboard
+output: 
+    html_document:
+      keep_md: TRUE
 ---
 
-Page 1
-=====================================  
-    
-Column {data-width=600}
--------------------------------------
-    
-### Chart 1
-    
-```{r}
-```
-   
-Column {data-width=400}
--------------------------------------
-   
-### Chart 2
+Final project for data visualisation course. All the required packages are mentioned in the code and all necessary files are included in the repository. The code is in the .rmd file named "FInal". The writeup for the project is named "writeup".
 
-```{r}
-```   
- 
-### Chart 3
-    
-```{r}
-```
-
-Page 2 {data-orientation=rows}
-=====================================     
-   
-Row {data-height=600}
--------------------------------------
-
-### Chart 1
-
-```{r}
-```
-
-Row {data-height=400}
--------------------------------------
-   
-### Chart 2
-
-```{r}
-```   
-    
-### Chart 3
-
-```{r}
-```
+The visualisation can be found at https://rcruzgil.shinyapps.io/finalproject/.
